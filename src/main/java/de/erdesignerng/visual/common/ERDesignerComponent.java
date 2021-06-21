@@ -53,6 +53,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JList;
+import javax.swing.JScrollPane;
+
 /**
  * The ERDesigner Editing Component.
  * <p/>
@@ -102,7 +113,8 @@ public final class ERDesignerComponent implements ResourceHelperProvider {
     private final ERDesignerWorldConnector worldConnector;
 
     private final DefaultComboBox zoomBox = new DefaultComboBox();
-
+    
+    private final DefaultComboBox clBox = new DefaultComboBox();
     private DefaultAction zoomInAction;
 
     private DefaultAction zoomOutAction;
@@ -733,6 +745,13 @@ public final class ERDesignerComponent implements ResourceHelperProvider {
         zoomBox.setMaximumSize(new Dimension(100, 21));
         zoomBox.setAction(theZoomAction);
         zoomBox.setModel(theZoomModel);
+        
+        
+        DefaultComboBoxModel changeLanguage = new DefaultComboBoxModel();
+        changeLanguage.addElement("English");
+        changeLanguage.addElement("Deutschland");
+        clBox.setModel(changeLanguage);
+        
 
         DefaultToolbar theToolBar = worldConnector.getToolBar();
 
@@ -748,6 +767,8 @@ public final class ERDesignerComponent implements ResourceHelperProvider {
         theToolBar.addSeparator();
         theToolBar.add(zoomBox);
         theToolBar.addSeparator();
+        theToolBar.add(clBox);
+        theToolBar.addSeparator();
         theToolBar.add(zoomInAction);
         theToolBar.add(zoomOutAction);
         theToolBar.addSeparator();
@@ -757,7 +778,14 @@ public final class ERDesignerComponent implements ResourceHelperProvider {
         entityButton = new DefaultToggleButton(entityAction);
         commentButton = new DefaultToggleButton(commentAction);
         viewButton = new DefaultToggleButton(viewAction);
-
+         
+         /*DefaultComboBoxModel<String> modela = new DefaultComboBoxModel<String>();
+    
+         modela.addElement("A");
+         modela.addElement("C");
+         modela.addElement("D");
+         modela.addElement("E");
+        */
         ButtonGroup theGroup = new ButtonGroup();
         theGroup.add(handButton);
         theGroup.add(relationButton);
@@ -785,7 +813,10 @@ public final class ERDesignerComponent implements ResourceHelperProvider {
         updateRecentlyUsedMenuEntries();
 
         setupViewForNothing();
+
     }
+
+    
 
     private void zoomOut() {
         int theIndex = zoomBox.getSelectedIndex();

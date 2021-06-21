@@ -2,7 +2,7 @@
 <Resource>
     <Bundle interface="de.erdesignerng.ERDesignerBundle">
         <Entry id="TITLE">
-            <Text>Mogwai ER-Designer NG</Text>
+            <Text>Mogwai ER-Designer NG Andika</Text>
         </Entry>
         <Entry id="FILE">
             <Text lang="de">Datei</Text>
